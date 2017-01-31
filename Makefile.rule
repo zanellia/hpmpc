@@ -44,7 +44,7 @@ TARGET = X64_AVX
 #TARGET = C99_4X4
 
 # use BLASFEO for the linear algebra
-USE_BLASFEO = 1
+USE_BLASFEO = 0
 BLASFEO_PATH = /opt/blasfeo
 
 # C Compiler
