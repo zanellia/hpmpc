@@ -54,7 +54,7 @@
 
 
 
-// work space size 
+// work space size
 int d_ip2_res_mpc_hard_work_space_size_bytes_libstr(int N, int *nx, int *nu, int *nb, int *ng)
 	{
 
@@ -253,7 +253,7 @@ int d_ip2_res_mpc_hard_libstr(int *kk, int k_max, double mu0, double mu_tol, dou
 		c_ptr += hst_bkp[ii].memory_size;
 		}
 
-	
+
 
 	// extract b
 	for(jj=0; jj<N; jj++)
@@ -273,7 +273,7 @@ int d_ip2_res_mpc_hard_libstr(int *kk, int k_max, double mu0, double mu_tol, dou
 	double alpha, mu, mu_aff;
 
 	// check if there are inequality constraints
-	double mu_scal = 0.0; 
+	double mu_scal = 0.0;
 	for(jj=0; jj<=N; jj++) mu_scal += 2*nb[jj] + 2*ng[jj];
 	if(mu_scal!=0.0) // there are some constraints
 		{
@@ -321,7 +321,7 @@ exit(1);
 	mu = mu0;
 
 	// set to zero iteration count
-	*kk = 0;	
+	*kk = 0;
 
 	// larger than minimum accepted step size
 	alpha = 1.0;
@@ -345,7 +345,7 @@ exit(1);
 		{
 
 //		printf("\nkk = %d (no res)\n", *kk);
-						
+
 
 
 		//update cost function matrices and vectors (box constraints)
@@ -403,11 +403,11 @@ exit(1);
 		alpha = 1.0;
 		d_compute_alpha_mpc_hard_libstr(N, nx, nu, nb, idxb, ng, &alpha, hst, hsdt, hslam, hsdlam, hslamt, hsdux, hsDCt, hsd);
 
-		
+
 
 		stat[5*(*kk)] = sigma;
 		stat[5*(*kk)+1] = alpha;
-			
+
 		alpha *= 0.995;
 
 #if 0
@@ -463,7 +463,7 @@ exit(1);
 
 //		// copy b into x
 //		for(ii=0; ii<N; ii++)
-//			for(jj=0; jj<nx[ii+1]; jj++) 
+//			for(jj=0; jj<nx[ii+1]; jj++)
 //				dux[ii+1][nu[ii+1]+jj] = pBAbt[ii][(nu[ii]+nx[ii])/bs*bs*cnx[ii+1]+(nu[ii]+nx[ii])%bs+bs*jj]; // copy b
 
 
@@ -501,7 +501,7 @@ exit(2);
 
 		stat[5*(*kk)] = sigma;
 		stat[5*(*kk)+3] = alpha;
-			
+
 		alpha *= 0.995;
 
 
@@ -527,7 +527,7 @@ exit(1);
 		d_update_var_mpc_hard_libstr(N, nx, nu, nb, ng, &mu, mu_scal, alpha, hsux, hsdux, hst, hsdt, hslam, hsdlam, hspi, hsdpi);
 
 		stat[5*(*kk)+4] = mu;
-		
+
 
 #if 0
 printf("\nux\n");
@@ -552,7 +552,7 @@ for(ii=0; ii<=N; ii++)
 
 
 		} // end of IP loop
-	
+
 
 
 #if 0
@@ -602,7 +602,7 @@ exit(2);
 
 
 
-	// IP loop		
+	// IP loop
 #if 0
 	int ipm_it;
 	for(ipm_it=0; ipm_it<3; ipm_it++)
@@ -617,7 +617,7 @@ exit(2);
 #if 0
 printf("\nIPM it %d\n", *kk);
 #endif
-						
+
 
 
 		// compute the update of Hessian and gradient from box and general constraints
@@ -664,7 +664,7 @@ exit(1);
 			if(ng[ii]>0) // TODO unsymmetric update not requiring sqrt & div ???
 				{
 				work2 = work + pnz[ii]*cng[ii];
-//				for(jj=0; jj<ng[ii]; jj++) 
+//				for(jj=0; jj<ng[ii]; jj++)
 //					Qx[ii][pnb[ii]+jj] = sqrt(Qx[ii][pnb[ii]+jj]); // XXX
 				dgemm_diag_right_lib(nu[ii]+nx[ii], ng[ii], pDCt[ii], cng[ii], Qx[ii]+pnb[ii], 0, work, cng[ii], work, cng[ii]);
 #ifdef BLASFEO
@@ -672,7 +672,7 @@ exit(1);
 #else
 				drowin_lib(ng[ii], qx[ii]+pnb[ii], work+(nu[ii]+nx[ii])/bs*cng[ii]*bs+(nu[ii]+nx[ii])%bs);
 #endif
-//				for(jj=0; jj<ng[ii]; jj++) 
+//				for(jj=0; jj<ng[ii]; jj++)
 //					work[(nu[ii]+nx[ii])/bs*cng[ii]*bs+(nu[ii]+nx[ii])%bs+jj*bs] /= Qx[ii][pnb[ii]+jj];
 #ifdef BLASFEO
 				dgecp_lib(nu[ii]+nx[ii], 1.0, ng[ii], 0, pDCt[ii], cng[ii], 0, work2, png[ii]);
@@ -781,7 +781,7 @@ exit(1);
 #endif
 #endif
 
-		
+
 #if 0
 //printf("\npL\n");
 //for(ii=0; ii<=N; ii++)
@@ -832,11 +832,11 @@ exit(1);
 		alpha = 1.0;
 		d_compute_alpha_res_mpc_hard_libstr(N, nx, nu, nb, idxb, ng, hsdux, hst, hstinv, hslam, hsDCt, hsres_d, hsres_m, hsdt, hsdlam, &alpha);
 
-		
+
 
 		stat[5*(*kk)] = sigma;
 		stat[5*(*kk)+1] = alpha;
-			
+
 		alpha *= 0.995;
 
 #if 0
@@ -1024,12 +1024,12 @@ exit(2);
 
 		stat[5*(*kk)] = sigma;
 		stat[5*(*kk)+3] = alpha;
-			
+
 		alpha *= 0.995;
 
 
 
-		// backup & update x, u, pi, lam, t 
+		// backup & update x, u, pi, lam, t
 		d_backup_update_var_res_mpc_hard_libstr(N, nx, nu, nb, ng, alpha, hsux_bkp, hsux, hsdux, hspi_bkp, hspi, hsdpi, hst_bkp, hst, hsdt, hslam_bkp, hslam, hsdlam);
 //		d_update_var_res_mpc_hard_tv(N, nx, nu, nb, ng, alpha, ux, dux, pi, dpi, t, dt, lam, dlam);
 
@@ -1077,7 +1077,7 @@ for(ii=0; ii<=N; ii++)
 #endif
 
 		stat[5*(*kk)+4] = mu;
-		
+
 
 
 
@@ -1086,7 +1086,7 @@ for(ii=0; ii<=N; ii++)
 
 
 		} // end of IP loop
-	
+
 
 
 	// restore Hessian XXX and gradient
@@ -1150,15 +1150,15 @@ exit(2);
 	// successful exit
 	if(mu<=mu_tol)
 		return 0;
-	
+
 	// max number of iterations reached
 	if(*kk>=k_max)
 		return 1;
-	
+
 	// no improvement
 	if(alpha<alpha_min)
 		return 2;
-	
+
 	// impossible
 	return -1;
 
