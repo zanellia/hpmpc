@@ -58,7 +58,7 @@ int d_back_ric_rec_work_space_size_bytes_libstr(int N, int *nx, int *nu, int *nb
 	nxM = nx[ii]>nxM ? nx[ii] : nxM;
 	ngM = ng[ii]>ngM ? ng[ii] : ngM;
 	nuxM = nu[ii]+nx[ii]>nuxM ? nu[ii]+nx[ii]+1 : nuxM;
-	
+
 	int size = 0;
 
 	size += d_size_strmat(nuxM+1, nxgM); // ric_work_mat[0]
@@ -276,7 +276,7 @@ void d_back_ric_rec_trf_libstr(int N, int *nx, int *nu, int *nb, int **hidxb, in
 			}
 		dtrtr_l_libstr(nx[N-nn-1], 1.0, &hsL[N-nn-1], nu[N-nn-1], nu[N-nn-1], &hsLxt[N-nn-1], 0, 0);
 		}
-	
+
 	return;
 
 	}
@@ -409,7 +409,11 @@ void d_back_ric_rec_trs_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 
 
 
-void d_back_ric_rec_sv_back_libstr(int N, int *nx, int *nu, int *nb, int **hidxb, int *ng, int update_b, struct d_strmat *hsBAbt, struct d_strvec *hsb, int update_q, struct d_strmat *hsRSQrq, struct d_strvec *hsrq, struct d_strmat *hsDCt, struct d_strvec *hsQx, struct d_strvec *hsqx, struct d_strvec *hsux, int compute_pi, struct d_strvec *hspi, int compute_Pb, struct d_strvec *hsPb, struct d_strmat *hsL, struct d_strmat *hsLxt, void *work)
+void d_back_ric_rec_sv_back_libstr(int N, int *nx, int *nu, int *nb, int **hidxb,
+	int *ng, int update_b, struct d_strmat *hsBAbt, struct d_strvec *hsb, int update_q,
+	struct d_strmat *hsRSQrq, struct d_strvec *hsrq, struct d_strmat *hsDCt, struct d_strvec *hsQx,
+	struct d_strvec *hsqx, struct d_strvec *hsux, int compute_pi, struct d_strvec *hspi, int compute_Pb,
+	struct d_strvec *hsPb, struct d_strmat *hsL, struct d_strmat *hsLxt, void *work)
 	{
 
 	char *c_ptr;
