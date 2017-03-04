@@ -26,7 +26,7 @@
 
 include ./Makefile.rule
 
-OBJS = 
+OBJS =
 
 ifeq ($(TARGET), X64_AVX2)
 # auxiliary
@@ -35,11 +35,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/avx2/kernel_dgemm_avx2_lib4.o ./kernel/avx2/kernel_dtrmm_avx2_lib4.o  ./kernel/avx2/kernel_dtrsm_avx2_lib4.o ./kernel/avx2/kernel_dsyrk_avx2_lib4.o  ./kernel/avx2/kernel_dpotrf_avx2_lib4.o ./kernel/avx2/kernel_dgemv_avx2_lib4.o ./kernel/avx2/kernel_dtrmv_avx2_lib4.o ./kernel/avx2/kernel_dtrsv_avx2_lib4.o ./kernel/avx2/kernel_dsymv_avx2_lib4.o ./kernel/avx2/kernel_dtran_avx2_lib4.o ./kernel/avx2/kernel_dttmm_avx2_lib4.o ./kernel/avx2/kernel_dtrinv_avx2_lib4.o ./kernel/avx/kernel_dcopy_avx_lib4.o ./kernel/avx2/kernel_dgetrf_avx2_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -86,11 +86,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/avx/kernel_dgemm_avx_lib4.o ./kernel/avx/kernel_dtrmm_avx_lib4.o  ./kernel/avx/kernel_dtrsm_avx_lib4.o ./kernel/avx/kernel_dsyrk_avx_lib4.o  ./kernel/avx/kernel_dpotrf_avx_lib4.o ./kernel/avx/kernel_dgemv_avx_lib4.o ./kernel/avx/kernel_dtrmv_avx_lib4.o ./kernel/avx/kernel_dtrsv_avx_lib4.o ./kernel/avx/kernel_dsymv_avx_lib4.o ./kernel/avx/kernel_dtran_avx_lib4.o ./kernel/avx/kernel_dttmm_avx_lib4.o ./kernel/avx/kernel_dtrinv_avx_lib4.o ./kernel/avx/kernel_dcopy_avx_lib4.o ./kernel/avx/kernel_dgetrf_avx_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -137,11 +137,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/sse3/kernel_dgemm_sse3_lib4.o ./kernel/sse3/kernel_dtrmm_sse3_lib4.o  ./kernel/sse3/kernel_dtrsm_sse3_lib4.o ./kernel/sse3/kernel_dsyrk_sse3_lib4.o  ./kernel/sse3/kernel_dpotrf_sse3_lib4.o ./kernel/c99/kernel_dgemv_c99_lib4.o ./kernel/c99/kernel_dtrmv_c99_lib4.o ./kernel/c99/kernel_dtrsv_c99_lib4.o ./kernel/c99/kernel_dsymv_c99_lib4.o ./kernel/c99/kernel_dtran_c99_lib4.o ./kernel/c99/kernel_dttmm_c99_lib4.o ./kernel/c99/kernel_dtrinv_c99_lib4.o ./kernel/c99/kernel_dcopy_c99_lib4.o ./kernel/c99/kernel_dgetrf_c99_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -188,11 +188,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/c99/kernel_dgemm_c99_lib4.o ./kernel/c99/kernel_dtrmm_c99_lib4.o  ./kernel/c99/kernel_dtrsm_c99_lib4.o ./kernel/c99/kernel_dsyrk_c99_lib4.o  ./kernel/c99/kernel_dpotrf_c99_lib4.o ./kernel/c99/kernel_dgemv_c99_lib4.o ./kernel/c99/kernel_dtrmv_c99_lib4.o ./kernel/c99/kernel_dtrsv_c99_lib4.o ./kernel/c99/kernel_dsymv_c99_lib4.o ./kernel/c99/kernel_dtran_c99_lib4.o ./kernel/c99/kernel_dttmm_c99_lib4.o ./kernel/c99/kernel_dtrinv_c99_lib4.o ./kernel/c99/kernel_dcopy_c99_lib4.o ./kernel/c99/kernel_dgetrf_c99_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -239,11 +239,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/armv8a/kernel_dgemm_neon_lib4.o ./kernel/armv8a/kernel_dgemm_neon_assembly_lib4.o ./kernel/c99/kernel_dtrmm_c99_lib4.o  ./kernel/c99/kernel_dtrsm_c99_lib4.o ./kernel/c99/kernel_dsyrk_c99_lib4.o  ./kernel/c99/kernel_dpotrf_c99_lib4.o ./kernel/c99/kernel_dgemv_c99_lib4.o ./kernel/c99/kernel_dtrmv_c99_lib4.o ./kernel/c99/kernel_dtrsv_c99_lib4.o ./kernel/c99/kernel_dsymv_c99_lib4.o ./kernel/c99/kernel_dtran_c99_lib4.o ./kernel/c99/kernel_dttmm_c99_lib4.o ./kernel/c99/kernel_dtrinv_c99_lib4.o ./kernel/c99/kernel_dcopy_c99_lib4.o ./kernel/c99/kernel_dgetrf_c99_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -290,11 +290,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/armv7a/kernel_dgemm_vfpv3_lib4.o ./kernel/armv7a/kernel_dtrmm_vfpv3_lib4.o  ./kernel/armv7a/kernel_dtrsm_vfpv3_lib4.o ./kernel/armv7a/kernel_dsyrk_vfpv3_lib4.o  ./kernel/armv7a/kernel_dpotrf_vfpv3_lib4.o ./kernel/armv7a/kernel_dgemv_c99_lib4.o ./kernel/armv7a/kernel_dtrmv_c99_lib4.o ./kernel/armv7a/kernel_dtrsv_c99_lib4.o ./kernel/c99/kernel_dsymv_c99_lib4.o ./kernel/c99/kernel_dtran_c99_lib4.o ./kernel/c99/kernel_dttmm_c99_lib4.o ./kernel/c99/kernel_dtrinv_c99_lib4.o  ./kernel/c99/kernel_dcopy_c99_lib4.o ./kernel/c99/kernel_dgetrf_c99_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -341,11 +341,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/armv7a/kernel_dgemm_vfpv3_lib4.o ./kernel/armv7a/kernel_dtrmm_vfpv3_lib4.o  ./kernel/armv7a/kernel_dtrsm_vfpv3_lib4.o ./kernel/armv7a/kernel_dsyrk_vfpv3_lib4.o  ./kernel/armv7a/kernel_dpotrf_vfpv3_lib4.o ./kernel/armv7a/kernel_dgemv_c99_lib4.o ./kernel/armv7a/kernel_dtrmv_c99_lib4.o ./kernel/armv7a/kernel_dtrsv_c99_lib4.o ./kernel/c99/kernel_dsymv_c99_lib4.o ./kernel/c99/kernel_dtran_c99_lib4.o ./kernel/c99/kernel_dttmm_c99_lib4.o ./kernel/c99/kernel_dtrinv_c99_lib4.o ./kernel/c99/kernel_dcopy_c99_lib4.o ./kernel/c99/kernel_dgetrf_c99_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -392,11 +392,11 @@ OBJS +=
 OBJS += ./auxiliary/i_aux.o
 # kernel
 ifeq ($(USE_BLASFEO), 1)
-OBJS += 
-OBJS += 
+OBJS +=
+OBJS +=
 else
 OBJS += ./kernel/armv7a/kernel_dgemm_vfpv3_lib4.o ./kernel/armv7a/kernel_dtrmm_vfpv3_lib4.o  ./kernel/armv7a/kernel_dtrsm_vfpv3_lib4.o ./kernel/armv7a/kernel_dsyrk_vfpv3_lib4.o  ./kernel/armv7a/kernel_dpotrf_vfpv3_lib4.o ./kernel/armv7a/kernel_dgemv_c99_lib4.o ./kernel/armv7a/kernel_dtrmv_c99_lib4.o ./kernel/armv7a/kernel_dtrsv_c99_lib4.o ./kernel/c99/kernel_dsymv_c99_lib4.o ./kernel/c99/kernel_dtran_c99_lib4.o ./kernel/c99/kernel_dttmm_c99_lib4.o ./kernel/c99/kernel_dtrinv_c99_lib4.o ./kernel/c99/kernel_dcopy_c99_lib4.o ./kernel/c99/kernel_dgetrf_c99_lib4.o
-OBJS += 
+OBJS +=
 endif
 # blas
 ifeq ($(USE_BLASFEO), 1)
@@ -529,18 +529,8 @@ run:
 	./test_problems/test.out
 
 install_static:
-	mkdir -p $(PREFIX)/hpmpc
-	mkdir -p $(PREFIX)/hpmpc/lib
-	cp -f libhpmpc.a $(PREFIX)/hpmpc/lib/libhpmpc.a
-	mkdir -p $(PREFIX)/hpmpc/include
-	cp -rf ./include/*.h $(PREFIX)/hpmpc/include/
-
-install_shared:
-	mkdir -p $(PREFIX)/hpmpc
-	mkdir -p $(PREFIX)/hpmpc/lib
-	cp -f libhpmpc.a $(PREFIX)/hpmpc/lib/libhpmpc.so
-	mkdir -p $(PREFIX)/hpmpc/include
-	cp -rf ./include/*.h $(PREFIX)/hpmpc/include/
+		mkdir -p $(PREFIX)/lib
+		cp -f libhpmpc.a $(PREFIX)/lib/
 
 uninstall:
 	rm -rf $(PREFIX)/hpmpc

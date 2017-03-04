@@ -59,7 +59,7 @@ OS = LINUX
 #OS = WINDOWS
 
 # Installation directory
-PREFIX = /opt
+PREFIX = /usr
 
 # top directory
 TOP = $(dir $(lastword $(MAKEFILE_LIST)))
