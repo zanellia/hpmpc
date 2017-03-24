@@ -202,7 +202,7 @@ OBJS +=
 endif
 # lqcp solvers
 ifeq ($(USE_BLASFEO), 1)
-OBJS += ./lqcp_solvers/d_back_ric_rec_libstr.o ./lqcp_solvers/d_tree_back_ric_rec_libstr.o ./lqcp_solvers/d_part_cond_libstr.o
+OBJS += ./lqcp_solvers/d_back_ric_rec_libstr.o ./lqcp_solvers/d_part_cond_libstr.o
 OBJS +=
 else
 OBJS += ./lqcp_solvers/d_back_ric_rec.o ./lqcp_solvers/d_for_schur_rec.o ./lqcp_solvers/d_res.o ./lqcp_solvers/d_part_cond.o
@@ -218,7 +218,7 @@ OBJS +=
 endif
 # mpc solvers
 ifeq ($(USE_BLASFEO), 1)
-OBJS += ./mpc_solvers/d_ip2_res_hard_libstr.o ./mpc_solvers/d_tree_ip2_res_hard_libstr.o
+OBJS += ./mpc_solvers/d_ip2_res_hard_libstr.o 
 OBJS +=
 else
 OBJS += ./mpc_solvers/d_ip2_hard.o ./mpc_solvers/d_res_ip_hard.o ./mpc_solvers/d_ip2_res_hard.o ./mpc_solvers/d_ip2_soft.o ./mpc_solvers/d_res_ip_soft.o
