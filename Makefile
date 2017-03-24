@@ -218,7 +218,7 @@ OBJS +=
 endif
 # mpc solvers
 ifeq ($(USE_BLASFEO), 1)
-OBJS += ./mpc_solvers/d_ip2_res_hard_libstr.o 
+OBJS += ./mpc_solvers/d_ip2_res_hard_libstr.o
 OBJS +=
 else
 OBJS += ./mpc_solvers/d_ip2_hard.o ./mpc_solvers/d_res_ip_hard.o ./mpc_solvers/d_ip2_res_hard.o ./mpc_solvers/d_ip2_soft.o ./mpc_solvers/d_res_ip_soft.o
@@ -464,7 +464,7 @@ shared_library: target
 #ifneq ($(REF_BLAS), 0)
 	make -C reference_code obj
 #endif
-	gcc -shared -o libhpmpc.so $(OBJS)
+	$(CC) -shared -o libhpmpc.so $(OBJS)
 	@echo
 	@echo " libhpmpc.so shared library build complete."
 	@echo
