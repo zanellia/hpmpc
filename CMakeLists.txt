@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.11)
-project(acados)
+project(hpmpc)
 
 file(GLOB HPMPC_AUXILIARY_SRC ${PROJECT_SOURCE_DIR}/auxiliary/d_aux_lib4.c
 	${PROJECT_SOURCE_DIR}/auxiliary/d_aux_extern_depend_lib4.c
@@ -20,4 +20,4 @@ set(HPMPC_SRC ${HPMPC_AUXILIARY_SRC} ${HPMPC_KERNEL_SRC} ${HPMPC_BLAS_SRC} ${HPM
 set(BLASFEO_PATH ${PROJECT_SOURCE_DIR}/../blasfeo)
 set(CMAKE_C_FLAGS "${CMAKE_FLAGS} -DTARGET_C99_4X4 -DBLASFEO -I${BLASFEO_PATH}/include")
 
-add_library(kitty_hpmpc SHARED ${HPMPC_SRC})
+add_library(hpmpc SHARED ${HPMPC_SRC})

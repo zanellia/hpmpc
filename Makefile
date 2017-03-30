@@ -111,8 +111,8 @@ shared_library: target
 	@echo " libhpmpc.so shared library build complete."
 	@echo
 
-target:
-	touch ./include/target.h
+#target:
+#	touch ./include/target.h
 
 ifeq ($(TARGET), C99_4X4)
 	echo "#ifndef TARGET_C99_4X4" > ./include/target.h
