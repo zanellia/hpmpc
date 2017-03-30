@@ -118,7 +118,7 @@ local.properties
 # PDT-specific
 .buildpath
 
-# sbteclipse plugin 
+# sbteclipse plugin
 .target
 
 # TeXlipse plugin
@@ -166,9 +166,6 @@ CMakeFiles
 # Makefile
 cmake_install.cmake
 install_manifest.txt
-
-### Preconfigured target configuration file
-include/target.h
 
 # Octave
 octave-workspace
