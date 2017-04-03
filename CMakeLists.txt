@@ -7,14 +7,14 @@ file(GLOB HPMPC_AUXILIARY_SRC
 	${PROJECT_SOURCE_DIR}/auxiliary/d_aux_extern_depend_lib4.c
 	${PROJECT_SOURCE_DIR}/auxiliary/i_aux.c)
 
-################################################################################
-###  NEED TO FIX SOURCES !!!
-################################################################################
-
 file(GLOB HPMPC_LCQP_SOLVERS_SRC ${PROJECT_SOURCE_DIR}/lqcp_solvers/d_back_ric_rec_libstr.c
 	${PROJECT_SOURCE_DIR}/lqcp_solvers/d_part_cond_libstr.c)
 
-file(GLOB HPMPC_MPC_SOLVERS_SRC ${PROJECT_SOURCE_DIR}/mpc_solvers/d_aux_ip_hard_libstr.c
+file(GLOB HPMPC_MPC_AUXILIARY_SRC
+	${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_aux_ip_hard_libstr.c
+	${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_res_ip_res_hard_libstr.c)
+
+file(GLOB HPMPC_MPC_SOLVERS_SRC
 	${PROJECT_SOURCE_DIR}/mpc_solvers/d_res_ip_res_hard_libstr.c)
 
 file(GLOB HPMPC_MPC_SOLVERS_C99_SRC ${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_ip2_res_hard_libstr.c)
