@@ -70,10 +70,10 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 
 	double
 		*ptr_b, *ptr_q, *ptr_d, *ptr_ux, *ptr_pi, *ptr_lam, *ptr_t, *ptr_rb, *ptr_rq, *ptr_rd, *ptr_rm;
-	
+
 	int
 		*ptr_idxb;
-	
+
 	int nu0, nu1, nx0, nx1, nxm, nb0, ng0, nb_tot;
 
 	double
@@ -110,7 +110,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		ptr_rm = hsrm[ii].pa;
 		}
 
-	for(jj=0; jj<nu0+nx0; jj++) 
+	for(jj=0; jj<nu0+nx0; jj++)
 		ptr_rq[jj] = ptr_q[jj];
 
 	if(nb0>0)
@@ -119,7 +119,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		ptr_idxb = idxb[ii];
 		nb_tot += nb0;
 
-		for(jj=0; jj<nb0; jj++) 
+		for(jj=0; jj<nb0; jj++)
 			{
 			ptr_rq[ptr_idxb[jj]] += - ptr_lam[jj] + ptr_lam[nb0+jj];
 
@@ -135,7 +135,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 	dsymv_l_libstr(nu0+nx0, nu0+nx0, 1.0, &hsQ[ii], 0, 0, &hsux[ii], 0, 1.0, &hsrq[ii], 0, &hsrq[ii], 0);
 
 	ptr_ux = hsux[ii+1].pa;
-	for(jj=0; jj<nx1; jj++) 
+	for(jj=0; jj<nx1; jj++)
 		ptr_rb[jj] = ptr_b[jj] - ptr_ux[nu1+jj];
 
 	dgemv_nt_libstr(nu0+nx0, nx1, 1.0, 1.0, &hsBAbt[ii], 0, 0, &hspi[ii+1], 0, &hsux[ii], 0, 1.0, 1.0, &hsrq[ii], 0, &hsrb[ii], 0, &hsrq[ii], 0, &hsrb[ii], 0);
@@ -210,10 +210,10 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 			ptr_rm = hsrm[ii].pa;
 			}
 
-		for(jj=0; jj<nu0; jj++) 
+		for(jj=0; jj<nu0; jj++)
 			ptr_rq[jj] = ptr_q[jj];
 
-		for(jj=0; jj<nx0; jj++) 
+		for(jj=0; jj<nx0; jj++)
 			ptr_rq[nu0+jj] = ptr_q[nu0+jj] - ptr_pi[jj];
 
 		if(nb0>0)
@@ -222,7 +222,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 			ptr_idxb = idxb[ii];
 			nb_tot += nb0;
 
-			for(jj=0; jj<nb0; jj++) 
+			for(jj=0; jj<nb0; jj++)
 				{
 				ptr_rq[ptr_idxb[jj]] += - ptr_lam[jj] + ptr_lam[nb0+jj];
 
@@ -238,7 +238,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		dsymv_l_libstr(nu0+nx0, nu0+nx0, 1.0, &hsQ[ii], 0, 0, &hsux[ii], 0, 1.0, &hsrq[ii], 0, &hsrq[ii], 0);
 
 		ptr_ux = hsux[ii+1].pa;
-		for(jj=0; jj<nx1; jj++) 
+		for(jj=0; jj<nx1; jj++)
 			ptr_rb[jj] = ptr_b[jj] - ptr_ux[nu1+jj];
 
 		dgemv_nt_libstr(nu0+nx0, nx1, 1.0, 1.0, &hsBAbt[ii], 0, 0, &hspi[ii+1], 0, &hsux[ii], 0, 1.0, 1.0, &hsrq[ii], 0, &hsrb[ii], 0, &hsrq[ii], 0, &hsrb[ii], 0);
@@ -285,7 +285,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 			}
 
 		}
-	
+
 
 
 	// last stage
@@ -309,7 +309,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		ptr_rm = hsrm[ii].pa;
 		}
 
-	for(jj=0; jj<nx0; jj++) 
+	for(jj=0; jj<nx0; jj++)
 		ptr_rq[nu0+jj] = - ptr_pi[jj] + ptr_q[nu0+jj];
 
 	if(nb0>0)
@@ -318,7 +318,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		ptr_idxb = idxb[ii];
 		nb_tot += nb0;
 
-		for(jj=0; jj<nb0; jj++) 
+		for(jj=0; jj<nb0; jj++)
 			{
 			ptr_rq[ptr_idxb[jj]] += - ptr_lam[jj] + ptr_lam[nb0+jj];
 
@@ -332,7 +332,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		}
 
 	dsymv_l_libstr(nx0, nx0, 1.0, &hsQ[ii], 0, 0, &hsux[ii], 0, 1.0, &hsrq[ii], 0, &hsrq[ii], 0);
-	
+
 	if(ng0>0)
 		{
 
@@ -343,7 +343,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 		c_ptr += hswork_1.memory_size;
 		work0 = hswork_0.pa;
 		work1 = hswork_1.pa;
-		
+
 		ptr_d   += 2*nb0;
 		ptr_lam += 2*nb0;
 		ptr_t   += 2*nb0;
@@ -373,7 +373,7 @@ void d_res_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int
 			}
 
 		}
-	
+
 
 	// normalize mu
 	if(nb_tot!=0)
