@@ -32,7 +32,7 @@ set(PREFIX /usr)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -fPIC -lm -DTARGET_C99_4X4 -DBLASFEO -I${BLASFEO_PATH}/include")
 
 # common optimization/debugging flags
-set(COMMON_FLAGS "-O2 -fPIC")
+set(COMMON_FLAGS "-g -fPIC")
 if(${USE_BLASFEO} EQUAL 1)
 	set(COMMON_FLAGS "${COMMON_FLAGS} -DBLASFEO -I${BLASFEO_PATH}/include")
 endif(${USE_BLASFEO} EQUAL 1)

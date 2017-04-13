@@ -46,7 +46,7 @@ void d_init_var_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **hidxb, i
 	double *ptr_ux, *ptr_pi, *ptr_db, *ptr_t, *ptr_lam;
 
 	int nb0, ng0;
-	
+
 	double thr0 = 0.1; // minimum vale of t (minimum distance from a constraint)
 
 
@@ -62,7 +62,6 @@ void d_init_var_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **hidxb, i
 				}
 			}
 		}
-
 
 	// check bounds & initialize multipliers
 	for(jj=0; jj<=N; jj++)
@@ -142,20 +141,20 @@ void d_init_var_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **hidxb, i
 
 void d_update_hessian_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, struct d_strvec *hsdb, double sigma_mu, struct d_strvec *hst, struct d_strvec *hstinv, struct d_strvec *hslam, struct d_strvec *hslamt, struct d_strvec *hsdlam, struct d_strvec *hsQx, struct d_strvec *hsqx)
 	{
-	
+
 	int ii, jj, bs0;
-	
+
 	int nb0, ng0;
-	
+
 	double temp0, temp1;
-	
-	double 
+
+	double
 		*ptr_db, *ptr_Qx, *ptr_qx,
 		*ptr_t, *ptr_lam, *ptr_lamt, *ptr_dlam, *ptr_tinv;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
-		
+
 		ptr_t     = hst[jj].pa;
 		ptr_lam   = hslam[jj].pa;
 		ptr_lamt  = hslamt[jj].pa;
@@ -398,17 +397,17 @@ void d_update_gradient_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng
 
 void d_compute_alpha_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int *ng, double *ptr_alpha, struct d_strvec *hst, struct d_strvec *hsdt, struct d_strvec *hslam, struct d_strvec *hsdlam, struct d_strvec *hslamt, struct d_strvec *hsdux, struct d_strmat *hsDCt, struct d_strvec *hsdb)
 	{
-	
+
 	int nu0, nx0, nb0, ng0;
 
 	double alpha = ptr_alpha[0];
-	
+
 	double
 		*ptr_db, *ptr_dux, *ptr_t, *ptr_dt, *ptr_lamt, *ptr_lam, *ptr_dlam;
-	
+
 	int
 		*ptr_idxb;
-	
+
 	int jj, ll;
 
 	for(jj=0; jj<=N; jj++)
@@ -502,13 +501,13 @@ void d_compute_alpha_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idx
 
 			}
 
-		}		
+		}
 
 	// store alpha
 	ptr_alpha[0] = alpha;
 
 	return;
-	
+
 	}
 
 
@@ -519,7 +518,7 @@ void d_update_var_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, dou
 	int nu0, nx0, nb0, ng0;
 
 	int jj, ll;
-	
+
 	double
 		*ptr_pi, *ptr_dpi, *ptr_ux, *ptr_dux, *ptr_t, *ptr_dt, *ptr_lam, *ptr_dlam;
 
@@ -553,7 +552,7 @@ void d_update_var_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, dou
 		nu0 = nu[jj];
 		nb0 = nb[jj];
 		ng0 = ng[jj];
-		
+
 		ptr_ux   = hsux[jj].pa;
 		ptr_dux  = hsdux[jj].pa;
 		ptr_t    = hst[jj].pa;
@@ -604,29 +603,29 @@ void d_update_var_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, dou
 	ptr_mu[0] = mu;
 
 	return;
-	
+
 	}
 
 
 
 void d_compute_mu_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, double *ptr_mu, double mu_scal, double alpha, struct d_strvec *hslam, struct d_strvec *hsdlam, struct d_strvec *hst, struct d_strvec *hsdt)
 	{
-	
+
 	int nb0, ng0;
 
 	int jj, ll;
-	
+
 	double
 		*ptr_t, *ptr_lam, *ptr_dt, *ptr_dlam;
-		
+
 	double mu = 0;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
-		
+
 		nb0 = nb[jj];
 		ng0 = ng[jj];
-		
+
 		ptr_t    = hst[jj].pa;
 		ptr_lam  = hslam[jj].pa;
 		ptr_dt   = hsdt[jj].pa;
@@ -653,7 +652,7 @@ void d_compute_mu_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, dou
 
 	// scale mu
 	mu *= mu_scal;
-		
+
 	ptr_mu[0] = mu;
 
 	return;
@@ -664,24 +663,24 @@ void d_compute_mu_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, dou
 
 void d_update_gradient_new_rhs_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *ng, double **db, double **lamt, double **qx)
 	{
-	
+
 	// constants
 	const int bs = D_MR;
 	const int ncl = D_NCL;
 
 	int nb0, pnb, ng0, png;
-	
+
 	double temp0, temp1;
-	
-	double 
+
+	double
 		*ptr_db, *ptr_Qx, *ptr_qx,
 		*ptr_lamt;
-	
+
 	int ii, jj, bs0;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
-		
+
 		ptr_lamt  = lamt[jj];
 		ptr_db    = db[jj];
 		ptr_qx    = qx[jj];
@@ -756,7 +755,7 @@ void d_update_gradient_new_rhs_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int
 #if 0
 void d_compute_t_lam_new_rhs_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int **idxb, int *ng, double **t_aff, double **lam_aff, double **lamt, double **tinv, double **dux, double **pDCt, double **db)
 	{
-	
+
 	// constants
 	const int bs = D_MR;
 	const int ncl = D_NCL;
@@ -765,10 +764,10 @@ void d_compute_t_lam_new_rhs_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *
 
 	double
 		*ptr_db, *ptr_dux, *ptr_t_aff, *ptr_lam_aff, *ptr_lamt, *ptr_tinv;
-	
+
 	int
 		*ptr_idxb;
-	
+
 	int jj, ll;
 
 	for(jj=0; jj<=N; jj++)
@@ -834,10 +833,10 @@ void d_compute_t_lam_new_rhs_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *
 
 			}
 
-		}		
+		}
 
 	return;
-	
+
 	}
 #endif
 
@@ -847,19 +846,19 @@ void d_compute_t_lam_new_rhs_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *
 
 void d_update_hessian_gradient_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, struct d_strvec *hsres_d, struct d_strvec *hsres_m, struct d_strvec *hst, struct d_strvec *hslam, struct d_strvec *hst_inv, struct d_strvec *hsQx, struct d_strvec *hsqx)
 	{
-	
+
 	int nb0, ng0;
-	
+
 	double temp0, temp1;
-	
-	double 
+
+	double
 		*ptr_res_d, *ptr_Qx, *ptr_qx, *ptr_t, *ptr_lam, *ptr_res_m, *ptr_t_inv;
-	
+
 	int ii, jj, bs0;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
-		
+
 		ptr_t     = hst[jj].pa;
 		ptr_lam   = hslam[jj].pa;
 		ptr_t_inv = hst_inv[jj].pa;
@@ -948,7 +947,7 @@ void d_update_hessian_gradient_res_mpc_hard_libstr(int N, int *nx, int *nu, int 
 				}
 			for(; ii<ng0; ii++)
 				{
-				
+
 				ptr_t_inv[ii+0] = 1.0/ptr_t[ii+0];
 				ptr_t_inv[ii+ng0+0] = 1.0/ptr_t[ii+ng0+0];
 				ptr_Qx[ii+0] = ptr_t_inv[ii+0]*ptr_lam[ii+0] + ptr_t_inv[ii+ng0+0]*ptr_lam[ii+ng0+0];
@@ -968,7 +967,7 @@ void d_update_hessian_gradient_res_mpc_hard_libstr(int N, int *nx, int *nu, int 
 #if 0
 void d_compute_dt_dlam_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int **idxb, int *ng, double **dux, double **t, double **t_inv, double **lam, double **pDCt, double **res_d, double **res_m, double **dt, double **dlam)
 	{
-	
+
 	// constants
 	const int bs = D_MR;
 	const int ncl = D_NCL;
@@ -977,10 +976,10 @@ void d_compute_dt_dlam_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int **i
 
 	double
 		*ptr_res_d, *ptr_res_m, *ptr_dux, *ptr_t, *ptr_t_inv, *ptr_dt, *ptr_lam, *ptr_dlam;
-	
+
 	int
 		*ptr_idxb;
-	
+
 	int jj, ll;
 
 	for(jj=0; jj<=N; jj++)
@@ -1006,7 +1005,7 @@ void d_compute_dt_dlam_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int **i
 			// box constraints
 			for(ll=0; ll<nb0; ll++)
 				{
-				
+
 				ptr_dt[ll+0]   =   ptr_dux[ptr_idxb[ll]] - ptr_res_d[ll+0];
 				ptr_dt[ll+pnb] = - ptr_dux[ptr_idxb[ll]] + ptr_res_d[ll+pnb];
 
@@ -1056,10 +1055,10 @@ void d_compute_dt_dlam_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int **i
 
 			}
 
-		}		
+		}
 
 	return;
-	
+
 	}
 #endif
 
@@ -1067,17 +1066,17 @@ void d_compute_dt_dlam_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int **i
 
 void d_compute_alpha_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int **idxb, int *ng, struct d_strvec *hsdux, struct d_strvec *hst, struct d_strvec *hst_inv, struct d_strvec *hslam, struct d_strmat *hsDCt, struct d_strvec *hsres_d, struct d_strvec *hsres_m, struct d_strvec *hsdt, struct d_strvec *hsdlam, double *ptr_alpha)
 	{
-	
+
 	int nu0, nx0, nb0, ng0;
 
 	double alpha = ptr_alpha[0];
-	
+
 	double
 		*ptr_res_d, *ptr_res_m, *ptr_dux, *ptr_t, *ptr_t_inv, *ptr_dt, *ptr_lam, *ptr_dlam;
-	
+
 	int
 		*ptr_idxb;
-	
+
 	int jj, ll;
 
 	for(jj=0; jj<=N; jj++)
@@ -1101,7 +1100,7 @@ void d_compute_alpha_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *
 			// box constraints
 			for(ll=0; ll<nb0; ll++)
 				{
-				
+
 				ptr_dt[ll+0]   =   ptr_dux[ptr_idxb[ll]] - ptr_res_d[ll+0];
 				ptr_dt[ll+nb0] = - ptr_dux[ptr_idxb[ll]] + ptr_res_d[ll+nb0];
 
@@ -1179,13 +1178,13 @@ void d_compute_alpha_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *
 
 			}
 
-		}		
+		}
 
 	// store alpha
 	ptr_alpha[0] = alpha;
 
 	return;
-	
+
 	}
 
 
@@ -1201,7 +1200,7 @@ void d_update_var_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *ng, dou
 	int nu0, nx0, nx1, nb0, pnb, ng0, png;
 
 	int jj, ll;
-	
+
 	double
 		*ptr_ux, *ptr_dux, *ptr_pi, *ptr_dpi, *ptr_t, *ptr_dt, *ptr_lam, *ptr_dlam;
 
@@ -1218,7 +1217,7 @@ void d_update_var_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *ng, dou
 			nx1 = nx[jj+1];
 		else
 			nx1 = 0;
-		
+
 		// update inputs and states
 		ptr_ux     = ux[jj];
 		ptr_dux    = dux[jj];
@@ -1252,7 +1251,7 @@ void d_update_var_res_mpc_hard_tv(int N, int *nx, int *nu, int *nb, int *ng, dou
 		}
 
 	return;
-	
+
 	}
 #endif
 
@@ -1264,7 +1263,7 @@ void d_backup_update_var_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, i
 	int nu0, nx0, nb0, ng0;
 
 	int jj, ll;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
 
@@ -1272,7 +1271,7 @@ void d_backup_update_var_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, i
 		nu0 = nu[jj];
 		nb0 = nb[jj];
 		ng0 = ng[jj];
-		
+
 		// update inputs and states
 		daxpy_bkp_libstr(nx0, alpha, &hsdpi[jj], 0, &hspi[jj], 0, &hspi_bkp[jj], 0);
 
@@ -1294,29 +1293,29 @@ void d_backup_update_var_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, i
 		}
 
 	return;
-	
+
 	}
 
 
 
 void d_compute_mu_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, double alpha, struct d_strvec *hslam, struct d_strvec *hsdlam, struct d_strvec *hst, struct d_strvec *hsdt, double *ptr_mu, double mu_scal)
 	{
-	
+
 	int nb0, ng0;
 
 	int jj, ll;
-	
+
 	double
 		*ptr_t, *ptr_lam, *ptr_dt, *ptr_dlam;
-		
+
 	double mu = 0;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
-		
+
 		nb0 = nb[jj];
 		ng0 = ng[jj];
-		
+
 		ptr_t    = hst[jj].pa;
 		ptr_lam  = hslam[jj].pa;
 		ptr_dt   = hsdt[jj].pa;
@@ -1343,7 +1342,7 @@ void d_compute_mu_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng,
 
 	// scale mu
 	mu *= mu_scal;
-		
+
 	ptr_mu[0] = mu;
 
 	return;
@@ -1361,7 +1360,7 @@ void d_compute_centering_correction_res_mpc_hard_libstr(int N, int *nb, int *ng,
 
 	double
 		*ptr_res_m, *ptr_dt, *ptr_dlam;
-	
+
 	for(ii=0; ii<=N; ii++)
 		{
 
@@ -1390,19 +1389,19 @@ void d_compute_centering_correction_res_mpc_hard_libstr(int N, int *nb, int *ng,
 
 void d_update_gradient_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int *ng, struct d_strvec *hsres_d, struct d_strvec *hsres_m, struct d_strvec *hslam, struct d_strvec *hst_inv, struct d_strvec *hsqx)
 	{
-	
+
 	int nb0, ng0;
-	
+
 	double temp0, temp1;
-	
-	double 
+
+	double
 		*ptr_res_d, *ptr_Qx, *ptr_qx, *ptr_lam, *ptr_res_m, *ptr_t_inv;
-	
+
 	int ii, jj, bs0;
-	
+
 	for(jj=0; jj<=N; jj++)
 		{
-		
+
 		ptr_lam   = hslam[jj].pa;
 		ptr_t_inv = hst_inv[jj].pa;
 		ptr_res_d = hsres_d[jj].pa;
@@ -1460,7 +1459,7 @@ void d_update_gradient_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int
 				}
 			for(; ii<ng0; ii++)
 				{
-				
+
 				ptr_qx[ii+0] = ptr_t_inv[ii+0]*(ptr_res_m[ii+0]-ptr_lam[ii+0]*ptr_res_d[ii+0]) - ptr_t_inv[ii+ng0+0]*(ptr_res_m[ii+ng0+0]+ptr_lam[ii+ng0+0]*ptr_res_d[ii+ng0+0]);
 
 				}
@@ -1474,4 +1473,3 @@ void d_update_gradient_res_mpc_hard_libstr(int N, int *nx, int *nu, int *nb, int
 
 
 #endif
-
