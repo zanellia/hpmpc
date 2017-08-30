@@ -112,26 +112,71 @@ if(${TARGET} EQUAL CORTEX_A7)
 endif(${TARGET} EQUAL CORTEX_A7)
 
 # source files
-file(GLOB HPMPC_AUXILIARY_SRC
-	${PROJECT_SOURCE_DIR}/auxiliary/d_aux_lib4.c
-	${PROJECT_SOURCE_DIR}/auxiliary/d_aux_extern_depend_lib4.c
-	${PROJECT_SOURCE_DIR}/auxiliary/i_aux.c)
+if(${TARGET} C99_4X4)
+	file(GLOB HPMPC_AUXILIARY_SRC
+		${PROJECT_SOURCE_DIR}/auxiliary/d_aux_lib4.c
+		${PROJECT_SOURCE_DIR}/auxiliary/d_aux_extern_depend_lib4.c
+		${PROJECT_SOURCE_DIR}/auxiliary/i_aux.c)
+endif(${TARGET} C99_4X4)
 
-file(GLOB HPMPC_LCQP_SOLVERS_SRC ${PROJECT_SOURCE_DIR}/lqcp_solvers/d_back_ric_rec_libstr.c
-	${PROJECT_SOURCE_DIR}/lqcp_solvers/d_part_cond_libstr.c)
+if(${USE_BLASFEO} 1)
+	file(GLOB HPMPC_LCQP_SOLVERS_SRC ${PROJECT_SOURCE_DIR}/lqcp_solvers/d_back_ric_rec_libstr.c
+		${PROJECT_SOURCE_DIR}/lqcp_solvers/d_part_cond_libstr.c)
 
-file(GLOB HPMPC_MPC_AUXILIARY_SRC
-	${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_aux_ip_hard_libstr.c
-	${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_res_ip_res_hard_libstr.c)
+	file(GLOB HPMPC_MPC_AUXILIARY_SRC
+		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_aux_ip_hard_libstr.c
+		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_res_ip_res_hard_libstr.c)
 
-file(GLOB HPMPC_MPC_SOLVERS_SRC
-	${PROJECT_SOURCE_DIR}/mpc_solvers/d_ip2_res_hard_libstr.c)
+	file(GLOB HPMPC_MPC_SOLVERS_SRC
+		${PROJECT_SOURCE_DIR}/mpc_solvers/d_ip2_res_hard_libstr.c)
 
-file(GLOB HPMPC_MPC_INTERFACES_SRC ${PROJECT_SOURCE_DIR}/interfaces/c/fortran_order_interface_libstr.c)
+	file(GLOB HPMPC_MPC_INTERFACES_SRC
+		${PROJECT_SOURCE_DIR}/interfaces/c/fortran_order_interface_libstr.c)
 
-set(HPMPC_SRC ${HPMPC_AUXILIARY_SRC} ${HPMPC_KERNEL_SRC} ${HPMPC_BLAS_SRC} ${HPMPC_LCQP_SOLVERS_SRC}
-	${HPMPC_MPC_AUXILIARY_SRC} ${HPMPC_MPC_SOLVERS_SRC} ${HPMPC_MPC_SOLVERS_C99_SRC} ${HPMPC_MPC_INTERFACES_SRC})
+	set(HPMPC_SRC ${HPMPC_AUXILIARY_SRC} ${HPMPC_KERNEL_SRC} ${HPMPC_BLAS_SRC} ${HPMPC_LCQP_SOLVERS_SRC}
+		${HPMPC_MPC_AUXILIARY_SRC} ${HPMPC_MPC_SOLVERS_SRC} ${HPMPC_MPC_SOLVERS_C99_SRC} ${HPMPC_MPC_INTERFACES_SRC})
 
+else(${USE_BLASFEO} 1)
+	file(GLOB HPMPC_KERNEL_SRC
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dgemm_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dtrmm_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dtrsm_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dsyrk_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dpotrf_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dgemv_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dtrmv_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dtrsv_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dsymv_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dtran_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dttmm_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dtrinv_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dcopy_c99_lib4.c
+		${PROJECT_SOURCE_DIR}/kernel/c99/kernel_dgetrf_c99_lib4.c)
+
+	file(GLOB HPMPC_BLAS_SRC
+		${PROJECT_SOURCE_DIR}/blas/blas_d_lib4.c)
+
+	file(GLOB HPMPC_LCQP_SOLVERS_SRC
+		${PROJECT_SOURCE_DIR}/lqcp_solvers/d_back_ric_rec.c
+		${PROJECT_SOURCE_DIR}/lqcp_solvers/d_for_schur_rec.c
+		${PROJECT_SOURCE_DIR}/lqcp_solvers/d_res.c
+		${PROJECT_SOURCE_DIR}/lqcp_solvers/d_part_cond.c)
+
+	file(GLOB HPMPC_MPC_AUXILIARY_SRC
+		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_aux_ip_hard_lib4.c
+		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_res_ip_res_hard.c
+		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_aux_ip_soft_lib4.c)
+
+	file(GLOB HPMPC_MPC_AUXILIARY_SRC(
+		${PROJECT_SOURCE_DIR}mpc_solvers/d_ip2_hard.c
+		${PROJECT_SOURCE_DIR}mpc_solvers/d_res_ip_hard.c
+		${PROJECT_SOURCE_DIR}mpc_solvers/d_ip2_res_hard.c
+		${PROJECT_SOURCE_DIR}mpc_solvers/d_ip2_soft.c
+		${PROJECT_SOURCE_DIR}mpc_solvers/d_res_ip_soft.c
+	)
+
+
+endif(${USE_BLASFEO} 1)
 
 # add library
 add_library(hpmpc SHARED ${HPMPC_SRC})
