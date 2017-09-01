@@ -167,7 +167,7 @@ else(${USE_BLASFEO} 1)
 		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_res_ip_res_hard.c
 		${PROJECT_SOURCE_DIR}/mpc_solvers/c99/d_aux_ip_soft_lib4.c)
 
-	file(GLOB HPMPC_MPC_AUXILIARY_SRC(
+	file(GLOB HPMPC_MPC_AUXILIARY_SRC
 		${PROJECT_SOURCE_DIR}mpc_solvers/d_ip2_hard.c
 		${PROJECT_SOURCE_DIR}mpc_solvers/d_res_ip_hard.c
 		${PROJECT_SOURCE_DIR}mpc_solvers/d_ip2_res_hard.c
