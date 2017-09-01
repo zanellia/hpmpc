@@ -10,7 +10,9 @@ project(hpmpc)
 # CORTEX_A9  : machine with ARMv7a processor with VPFv3 (D32 versions) and NEON, code optimized for ARM Cortex A9.
 # CORTEX_A7  : machine with ARMv7a processor with VPFv3 (D32 versions) and NEON, code optimized for ARM Cortex A7.
 # C99_4X4    : c99 reference code, performing better on a machine with at least 32 scalar registers.
-set(TARGET X64_AVX)
+
+# set(TARGET X64_AVX)
+set(TARGET C99_4X4)
 
 # use BLASFEO?
 set(USE_BLASFEO 0)
